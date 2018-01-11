@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+# @Time    : 2017/11/6 下午5:42
+# @Author  : Jalo.Mu
+# @Site    : 
+# @File    : config.py
+# @Software: PyCharm
+
 import os
 
 
@@ -9,7 +16,12 @@ class Config:
     FLASKY_POSTS_PER_PAGE = 20
     TESTING = False
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL") or \
-        'mysql+pymysql://sma:123456@192.16.1.10:3306/sma?charset=utf8'
+        'mysql+pymysql://sma:123456@192.16.1.100:3306/sma?charset=utf8'
+
+    HOST = '0.0.0.0'
+    PORT = '8000'
+    EXPIRATION = 8 * 3600
+    QQPATH =basedir + '/modelsDB/ipdb/qqwry.dat'
 
     @staticmethod
     def init_app(app):
@@ -19,16 +31,21 @@ class Config:
 class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL") or \
-        'mysql+pymysql://sma:123456@192.16.1.10:3306/sma?charset=utf8'
+        'mysql+pymysql://sma:123456@192.16.1.100:3306/sma?charset=utf8'
     SQLALCHEMY_ECHO = True
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     SQLALCHEMY_RECORD_QUERIES = True
+    HOST = '0.0.0.0'
+    PORT = '8000'
+    EXPIRATION = 8 * 3600
 
 
 class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL") or \
         'mysql+pymysql://sma:123456@127.0.0.1:3306/sma?charset=utf8'
-
+    HOST = '0.0.0.0'
+    PORT = '8000'
+    EXPIRATION = 8 * 3600
 
 config = {
     'development': DevelopmentConfig,
